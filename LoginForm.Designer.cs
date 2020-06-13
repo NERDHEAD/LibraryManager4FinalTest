@@ -87,7 +87,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "LoginForm";
-            this.Text = "로그인 - 도서관리프로그램";
+            this.Text = "도서관리프로그램 - 로그인";
             this.ResumeLayout(false);
             this.PerformLayout();
 
