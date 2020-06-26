@@ -52,6 +52,8 @@
     <Compile Include="BarcodeForm.Designer.cs">
       <DependentUpon>BarcodeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DBManager\BookDBManager.cs" />
+    <Compile Include="DBManager\DBConn.cs" />
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +98,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DBManager\BookDB.accdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

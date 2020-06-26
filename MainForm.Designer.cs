@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.managePage = new System.Windows.Forms.TabPage();
+            this.pageBookList = new System.Windows.Forms.TabPage();
             this.btnBookApply = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnInsert = new System.Windows.Forms.Button();
@@ -41,21 +41,21 @@
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.cbSearchList = new System.Windows.Forms.ComboBox();
-            this.revenuePage = new System.Windows.Forms.TabPage();
+            this.pageSalesList = new System.Windows.Forms.TabPage();
             this.btnBookList = new System.Windows.Forms.Button();
             this.btnApplyList = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSalesList = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
-            this.managePage.SuspendLayout();
+            this.pageBookList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
-            this.tabControl1.Controls.Add(this.managePage);
-            this.tabControl1.Controls.Add(this.revenuePage);
+            this.tabControl1.Controls.Add(this.pageBookList);
+            this.tabControl1.Controls.Add(this.pageSalesList);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Right;
             this.tabControl1.ItemSize = new System.Drawing.Size(0, 1);
             this.tabControl1.Location = new System.Drawing.Point(94, 0);
@@ -65,25 +65,25 @@
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 0;
             // 
-            // managePage
+            // pageBookList
             // 
-            this.managePage.Controls.Add(this.btnBookApply);
-            this.managePage.Controls.Add(this.btnUpdate);
-            this.managePage.Controls.Add(this.btnInsert);
-            this.managePage.Controls.Add(this.btnDelete);
-            this.managePage.Controls.Add(this.btnEditMode);
-            this.managePage.Controls.Add(this.btnInfo);
-            this.managePage.Controls.Add(this.btnReset);
-            this.managePage.Controls.Add(this.btnSearch);
-            this.managePage.Controls.Add(this.dataGridView);
-            this.managePage.Controls.Add(this.txtSearch);
-            this.managePage.Controls.Add(this.cbSearchList);
-            this.managePage.Location = new System.Drawing.Point(4, 5);
-            this.managePage.Name = "managePage";
-            this.managePage.Padding = new System.Windows.Forms.Padding(3);
-            this.managePage.Size = new System.Drawing.Size(825, 441);
-            this.managePage.TabIndex = 0;
-            this.managePage.UseVisualStyleBackColor = true;
+            this.pageBookList.Controls.Add(this.btnBookApply);
+            this.pageBookList.Controls.Add(this.btnUpdate);
+            this.pageBookList.Controls.Add(this.btnInsert);
+            this.pageBookList.Controls.Add(this.btnDelete);
+            this.pageBookList.Controls.Add(this.btnEditMode);
+            this.pageBookList.Controls.Add(this.btnInfo);
+            this.pageBookList.Controls.Add(this.btnReset);
+            this.pageBookList.Controls.Add(this.btnSearch);
+            this.pageBookList.Controls.Add(this.dataGridView);
+            this.pageBookList.Controls.Add(this.txtSearch);
+            this.pageBookList.Controls.Add(this.cbSearchList);
+            this.pageBookList.Location = new System.Drawing.Point(4, 5);
+            this.pageBookList.Name = "pageBookList";
+            this.pageBookList.Padding = new System.Windows.Forms.Padding(3);
+            this.pageBookList.Size = new System.Drawing.Size(825, 441);
+            this.pageBookList.TabIndex = 0;
+            this.pageBookList.UseVisualStyleBackColor = true;
             // 
             // btnBookApply
             // 
@@ -188,14 +188,14 @@
             this.cbSearchList.Size = new System.Drawing.Size(103, 28);
             this.cbSearchList.TabIndex = 0;
             // 
-            // revenuePage
+            // pageSalesList
             // 
-            this.revenuePage.Location = new System.Drawing.Point(4, 5);
-            this.revenuePage.Name = "revenuePage";
-            this.revenuePage.Padding = new System.Windows.Forms.Padding(3);
-            this.revenuePage.Size = new System.Drawing.Size(825, 441);
-            this.revenuePage.TabIndex = 1;
-            this.revenuePage.UseVisualStyleBackColor = true;
+            this.pageSalesList.Location = new System.Drawing.Point(4, 5);
+            this.pageSalesList.Name = "pageSalesList";
+            this.pageSalesList.Padding = new System.Windows.Forms.Padding(3);
+            this.pageSalesList.Size = new System.Drawing.Size(825, 441);
+            this.pageSalesList.TabIndex = 1;
+            this.pageSalesList.UseVisualStyleBackColor = true;
             // 
             // btnBookList
             // 
@@ -249,8 +249,8 @@
             this.Name = "MainForm";
             this.Text = "도서관리프로그램";
             this.tabControl1.ResumeLayout(false);
-            this.managePage.ResumeLayout(false);
-            this.managePage.PerformLayout();
+            this.pageBookList.ResumeLayout(false);
+            this.pageBookList.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -260,11 +260,11 @@
         #endregion
 
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage managePage;
+        private System.Windows.Forms.TabPage pageBookList;
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.ComboBox cbSearchList;
-        private System.Windows.Forms.TabPage revenuePage;
+        private System.Windows.Forms.TabPage pageSalesList;
         private System.Windows.Forms.Button btnBookList;
         private System.Windows.Forms.Button btnApplyList;
         private System.Windows.Forms.Label label1;
