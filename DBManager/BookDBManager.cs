@@ -1,17 +1,22 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace 도서판매관리_1512035_류주성.DBManager
 {
     //preparedStatement ??? 쓸것
-    class BookDBManager
+    public class BookDBManager
     {
         private readonly String BOOK_TABLE_PATH = "D:\\College_Homework\\C#\\homework_final\\도서판매관리_1512035_류주성\\DBManager\\BookDB.accdb";
+        private string[] filter = new BookDTO().Filter;
         private DBConn conn;
 
 
@@ -48,6 +53,194 @@ namespace 도서판매관리_1512035_류주성.DBManager
         //public Boolean deleteBook(BookListDTO booklist){}
 
         //saleslist 조회하기
+
+
+
+
+
+
+        public Boolean insertBook(BookDTO book)
+        {
+            Boolean status = false;
+
+            string sqlBook= "INSERT INTO [t도서목록]([도서명],[출판사])"+
+                " VALUES(@bookname, @publisher);";
+            string sqlStock= "INSERT INTO[t도서재고]([ID],[재고],[단가])" +
+                " VALUES(@id ,@stock, @price);";
+
+            
+            conn = new DBConn(BOOK_TABLE_PATH);
+            OleDbCommand cmd1 = new OleDbCommand(sqlBook, conn.GetConn());
+            cmd1.Parameters.AddWithValue("@bookname", book.BookName);
+            cmd1.Parameters.AddWithValue("@publisher", book.Publisher);
+
+            OleDbCommand cmd2 = new OleDbCommand(sqlStock, conn.GetConn());
+            cmd2.Parameters.AddWithValue("@id", book.Id);
+            cmd2.Parameters.AddWithValue("@stock", book.Stock);
+            cmd2.Parameters.AddWithValue("@price", book.Price);
+            
+            try
+            {
+                cmd1.ExecuteNonQuery();
+                cmd2.ExecuteNonQuery();
+                status = true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace);
+            }
+
+
+
+
+
+
+            conn.Close();
+            return status;
+        }
+        public Boolean updateBook(BookDTO book)
+        {
+            Boolean status = false;
+
+            string sqlBook = "UPDATE [t도서목록] set [도서명]=@bookname, [출판사]=@publisher"+
+                " where [ID]=@id;";
+            string sqlStock = "update [t도서재고] set [재고]=@stock, [단가]=@price" +
+                " where [ID]=@id;";
+
+            conn = new DBConn(BOOK_TABLE_PATH);
+            OleDbCommand cmd1 = new OleDbCommand(sqlBook, conn.GetConn());
+            cmd1.Parameters.AddWithValue("@bookname", book.BookName);
+            cmd1.Parameters.AddWithValue("@publisher", book.Publisher);
+            cmd1.Parameters.AddWithValue("@id", book.Id);
+
+            OleDbCommand cmd2 = new OleDbCommand(sqlStock, conn.GetConn());
+            cmd2.Parameters.AddWithValue("@stock", book.Stock);
+            cmd2.Parameters.AddWithValue("@price", book.Price);
+            cmd2.Parameters.AddWithValue("@id", book.Id);
+            try
+            {
+                cmd1.ExecuteNonQuery();
+                cmd2.ExecuteNonQuery();
+                status = true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace);
+                status = false;
+            }
+
+            
+
+            
+
+
+            conn.Close();
+            return status;
+        }
+
+
+        public LinkedList<BookDTO> getBookList()
+        {
+            
+            string sql = "select * from q도서조회";
+            LinkedList<BookDTO> bookList = new LinkedList<BookDTO>();
+
+            conn = new DBConn(BOOK_TABLE_PATH);
+            OleDbDataReader reader = conn.ExecuteReader(sql);
+            while (reader.Read())
+            {
+                BookDTO book = new BookDTO();
+                book.Id=
+                    Convert.ToInt32(reader[filter[0]]);
+                book.BookName = 
+                    Convert.ToString(reader[filter[1]]);
+                book.Publisher = 
+                    Convert.ToString(reader[filter[2]]);
+                book.Stock = 
+                    Convert.ToInt32(reader[filter[3]]);
+                book.Price = 
+                    Convert.ToInt32(reader[filter[4]]);
+
+                bookList.AddLast(book);
+            }
+
+            reader.Close();
+            conn.Close();
+
+            return bookList;
+        }
+        public Dictionary<string, LinkedList<SalesDTO>> getSalesList()
+        {
+            Dictionary<string, string> sqlDic = new Dictionary<string, string>();
+            Dictionary<string, LinkedList<SalesDTO>> salesGroup = new Dictionary<string, LinkedList<SalesDTO>>();
+            
+
+
+            sqlDic.Add("도서", "select * from [q도서매출(도서)]");
+            sqlDic.Add("일", "select * from [q도서매출(일별)]");
+            sqlDic.Add("월", "select * from [q도서매출(월별)]");
+            sqlDic.Add("출판사", "select * from [q도서매출(출판사)]");
+
+            String sql;
+            foreach(string key in sqlDic.Keys)
+            {
+                sql = sqlDic[key];
+                conn = new DBConn(BOOK_TABLE_PATH);
+                OleDbDataReader reader = conn.ExecuteReader(sql);
+
+                LinkedList<SalesDTO> salesList = new LinkedList<SalesDTO>(); ;
+                while (reader.Read())
+                {
+                    SalesDTO sales = new SalesDTO();
+                    
+                    sales.Filter =
+                        Convert.ToString(reader[0]);
+                    sales.Sales =
+                        Convert.ToString(reader[1]);
+
+                    salesList.AddLast(sales);
+                }
+                reader.Close();
+                conn.Close();
+                salesGroup.Add(key, salesList);
+            }
+            return salesGroup;
+        }
+
+
+
+
+        public DataTable convert2DataTable(LinkedList<BookDTO> booklist)
+        {
+
+            DataTable table = new DataTable();
+            table.Columns.Add(filter[0], typeof(int));
+            table.Columns.Add(filter[1], typeof(string));
+            table.Columns.Add(filter[2], typeof(string));
+            table.Columns.Add(filter[3], typeof(int));
+            table.Columns.Add(filter[4], typeof(int));
+
+            foreach(BookDTO book in booklist)
+            {
+                table.Rows.Add(book.Id, book.BookName, book.Publisher, book.Stock, book.Price);
+            }
+
+            return table;
+        }
+        public DataTable convert2DataTable(String key, LinkedList<SalesDTO> salesList)
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add(key, typeof(string));
+            table.Columns.Add("매출액", typeof(string));
+
+            foreach (SalesDTO sales in salesList)
+            {
+                table.Rows.Add(sales.Filter, sales.Sales);
+            }
+
+            return table;
+        }
+
 
     }
 }

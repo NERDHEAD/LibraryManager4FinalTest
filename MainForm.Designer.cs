@@ -42,6 +42,12 @@
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.cbSearchList = new System.Windows.Forms.ComboBox();
             this.pageSalesList = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnBookList = new System.Windows.Forms.Button();
             this.btnApplyList = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -49,6 +55,9 @@
             this.tabControl1.SuspendLayout();
             this.pageBookList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            this.pageSalesList.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -87,6 +96,7 @@
             // 
             // btnBookApply
             // 
+            this.btnBookApply.Enabled = false;
             this.btnBookApply.Location = new System.Drawing.Point(738, 11);
             this.btnBookApply.Name = "btnBookApply";
             this.btnBookApply.Size = new System.Drawing.Size(79, 31);
@@ -103,6 +113,8 @@
             this.btnUpdate.TabIndex = 9;
             this.btnUpdate.Text = "수정";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Visible = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnInsert
             // 
@@ -113,6 +125,8 @@
             this.btnInsert.TabIndex = 8;
             this.btnInsert.Text = "등록";
             this.btnInsert.UseVisualStyleBackColor = true;
+            this.btnInsert.Visible = false;
+            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
             // btnDelete
             // 
@@ -123,6 +137,7 @@
             this.btnDelete.TabIndex = 7;
             this.btnDelete.Text = "삭제";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Visible = false;
             // 
             // btnEditMode
             // 
@@ -132,6 +147,8 @@
             this.btnEditMode.TabIndex = 6;
             this.btnEditMode.Text = "편집 모드";
             this.btnEditMode.UseVisualStyleBackColor = true;
+            this.btnEditMode.Visible = false;
+            this.btnEditMode.Click += new System.EventHandler(this.btnEditMode_Click);
             // 
             // btnInfo
             // 
@@ -151,6 +168,7 @@
             this.btnReset.TabIndex = 4;
             this.btnReset.Text = "초기화";
             this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnSearch
             // 
@@ -170,6 +188,8 @@
             this.dataGridView.RowTemplate.Height = 23;
             this.dataGridView.Size = new System.Drawing.Size(716, 384);
             this.dataGridView.TabIndex = 2;
+            this.dataGridView.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView_CellMouseUp);
+            this.dataGridView.DoubleClick += new System.EventHandler(this.dataGridView_DoubleClick);
             // 
             // txtSearch
             // 
@@ -190,12 +210,78 @@
             // 
             // pageSalesList
             // 
+            this.pageSalesList.Controls.Add(this.groupBox1);
+            this.pageSalesList.Controls.Add(this.dataGridView1);
             this.pageSalesList.Location = new System.Drawing.Point(4, 5);
             this.pageSalesList.Name = "pageSalesList";
             this.pageSalesList.Padding = new System.Windows.Forms.Padding(3);
             this.pageSalesList.Size = new System.Drawing.Size(825, 441);
             this.pageSalesList.TabIndex = 1;
             this.pageSalesList.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Controls.Add(this.radioButton2);
+            this.groupBox1.Controls.Add(this.radioButton4);
+            this.groupBox1.Controls.Add(this.radioButton3);
+            this.groupBox1.Location = new System.Drawing.Point(722, 347);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(97, 86);
+            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "필터";
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Location = new System.Drawing.Point(6, 20);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(47, 16);
+            this.radioButton1.TabIndex = 3;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "도서";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(6, 42);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(35, 16);
+            this.radioButton2.TabIndex = 2;
+            this.radioButton2.Text = "일";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton4
+            // 
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Location = new System.Drawing.Point(6, 64);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(59, 16);
+            this.radioButton4.TabIndex = 0;
+            this.radioButton4.Text = "출판사";
+            this.radioButton4.UseVisualStyleBackColor = true;
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(47, 42);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(35, 16);
+            this.radioButton3.TabIndex = 1;
+            this.radioButton3.Text = "월";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(6, 49);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 23;
+            this.dataGridView1.Size = new System.Drawing.Size(713, 386);
+            this.dataGridView1.TabIndex = 4;
             // 
             // btnBookList
             // 
@@ -206,9 +292,11 @@
             this.btnBookList.TabIndex = 0;
             this.btnBookList.Text = "도서 목록";
             this.btnBookList.UseVisualStyleBackColor = true;
+            this.btnBookList.Click += new System.EventHandler(this.btnBookList_Click);
             // 
             // btnApplyList
             // 
+            this.btnApplyList.Enabled = false;
             this.btnApplyList.Font = new System.Drawing.Font("굴림", 9F);
             this.btnApplyList.Location = new System.Drawing.Point(9, 104);
             this.btnApplyList.Name = "btnApplyList";
@@ -235,6 +323,8 @@
             this.btnSalesList.TabIndex = 3;
             this.btnSalesList.Text = "도서 매출";
             this.btnSalesList.UseVisualStyleBackColor = true;
+            this.btnSalesList.Visible = false;
+            this.btnSalesList.Click += new System.EventHandler(this.btnSalesList_Click);
             // 
             // MainForm
             // 
@@ -248,10 +338,15 @@
             this.Controls.Add(this.tabControl1);
             this.Name = "MainForm";
             this.Text = "도서관리프로그램";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.pageBookList.ResumeLayout(false);
             this.pageBookList.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+            this.pageSalesList.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -277,5 +372,11 @@
         private System.Windows.Forms.Button btnEditMode;
         private System.Windows.Forms.Button btnInfo;
         private System.Windows.Forms.Button btnSalesList;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

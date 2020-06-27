@@ -16,7 +16,7 @@ namespace 도서판매관리_1512035_류주성
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginForm());
+            Application.Run(new MainForm());
         }
     }
 }
