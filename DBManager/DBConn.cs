@@ -38,6 +38,11 @@ namespace 도서판매관리_1512035_류주성
             OleDbCommand cmd = new OleDbCommand(sql, conn);
             cmd.ExecuteNonQuery();
         }
+        public OleDbCommand ExecuteCommand(string sql)
+        {
+            return new OleDbCommand(sql, conn);
+        }
+
 
         public OleDbDataReader ExecuteReader(string sql)
         {
